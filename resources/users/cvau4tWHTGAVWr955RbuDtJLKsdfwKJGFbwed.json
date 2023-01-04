@@ -1,0 +1,29 @@
+{
+  "sub": "fake-oidc",
+  "email": "pirate.captain@example.com",
+  "email_verified": true,
+  "name": "Pirate Captain",
+  "family_name": "Captain",
+  "given_name": "Pirate",
+  "middle_name": "Hooky",
+  "nickname": "Cappy",
+  "preferred_username": "Captain Pirate",
+  "profile": "https://example.com",
+  "picture": "https://example.com",
+  "website": "https://example.com",
+  "gender": "male",
+  "birthdate": "1991-05-04",
+  "zoneinfo": "Europe/Brussels",
+  "locale": "nl_BE",
+  "phone_number": "+32485998877",
+  "phone_number_verified": false,
+  "address": {
+    "street_address": "Piratenstraat 54",
+    "region": "Antwerpen",
+    "postal_code": "1234",
+    "locality": "Boot",
+    "country": "Belgium",
+    "formatted": "Piratenstraat 54\r\n1234 Boot\r\nBelgium"
+  },
+  "updated_at": 1672856847
+}

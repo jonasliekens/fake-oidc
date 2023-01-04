@@ -1,0 +1,9 @@
+{
+  "sub": "fake-oidc",
+  "email": "jay.monkey@example.com",
+  "name": "Jay the Monkey",
+  "family_name": "the Monkey",
+  "given_name": "Jay",
+  "locale": "nl_BE",
+  "updated_at": 1672856847
+}
