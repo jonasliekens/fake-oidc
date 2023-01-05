@@ -27,7 +27,7 @@ def get_openid_config():
     return new_json_response(
         {
             'issuer': config.hostname,
-            'authorization_endpoint': '{}/login'.format(config.hostname),
+            'authorization_endpoint': '{}/authorize'.format(config.hostname),
             'token_endpoint': '{}/token'.format(config.hostname),
             'userinfo_endpoint': '{}/user-info'.format(config.hostname),
             'end_session_endpoint': '{}/logout'.format(config.hostname),
@@ -49,7 +49,7 @@ def get_jwk():
     return new_json_response(jwk_keys)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/authorize', methods=['GET', 'POST'])
 def login():
     logging.info("👀 Validating login request very strictly. I swear!")
     if request.method == 'GET':
@@ -115,12 +115,25 @@ def get_token():
     )
 
 
-@app.route('/user-info', methods=['GET'])
+@app.route('/user-info', methods=['GET', 'POST'])
 def get_user_principal():
+    authorization = request.headers['Authorization'].split(' ') if 'Authorization' in request.headers else abort(401)
+    token = authorization[1] if authorization[0] == 'Bearer' else abort(401)
+    principal = find_user_by_token(token)
+
+    return new_json_response(principal) if principal else abort(401)
+
+
+# https://www.rfc-editor.org/rfc/rfc7662
+@app.route('/introspect', methods=['POST'])
+def introspect_token():
     if 'Authorization' not in request.headers.keys():
         abort(401)
 
-    principal = find_user_by_token(request.headers['Authorization'].split(' ')[1])
+    token = request.form['token']
+
+    principal = find_user_by_token(token)
+    principal['active'] = True
 
     if not principal:
         abort(401)

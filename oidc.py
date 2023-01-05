@@ -39,7 +39,7 @@ def generate_id_token(token_data):
         'iat': round(now.timestamp()),
         'nonce': token_data['nonce'],
         'at_hash': calculate_at_hash(token_data['access_token']),
-        'scope': token_data['scope'].replace(',', ' ')
+        'scope': token_data['scope']
     }
 
     if str(token_data['scope']).__contains__('profile'):
