@@ -133,10 +133,11 @@ def introspect_token():
     token = request.form['token']
 
     principal = find_user_by_token(token)
-    principal['active'] = True
 
     if not principal:
         abort(401)
+
+    principal['active'] = True
 
     return new_json_response(principal)
 
