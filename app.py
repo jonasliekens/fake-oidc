@@ -171,14 +171,14 @@ def register_new_code(state_id, token):
 
 
 def abort_with_bad_request(log_msg):
-    logging.info('🚫 {}'.format(log_msg))
+    logging.info('😱 {}'.format(log_msg))
     abort(400)
 
 
 def login_page_with_error(error_msg):
     logging.info('🚫 {}'.format(error_msg))
     return render_template('login.html',
-                           error='🚫 {}'.format(error_msg))
+                           error='😱 {}'.format(error_msg))
 
 
 if __name__ == '__main__':
