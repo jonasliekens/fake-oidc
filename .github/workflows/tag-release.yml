@@ -1,0 +1,19 @@
+name: Release App
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: gembaadvantage/uplift-action@v2
+        with:
+          args: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_UPLIFT }}
